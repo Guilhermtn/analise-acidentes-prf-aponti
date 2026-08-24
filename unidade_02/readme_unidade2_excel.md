@@ -1,4 +1,4 @@
-# 📊 Módulo 2 — Exploração Inicial em Excel
+# 📊 Unidade 2 — Exploração Inicial em Excel
 
 Primeira leitura da base DATATRAN 2025 (PRF), antes de partir para as consultas em SQL e o tratamento em Python.
 
@@ -11,7 +11,7 @@ Primeira leitura da base DATATRAN 2025 (PRF), antes de partir para as consultas 
 
 Depois de definir o problema no Módulo 1, o CRISP-DM pede a Compreensão dos Dados: primeiro conhecer a base (importar, conferir tipos, linhas, colunas e inconsistências), depois já começar a explorar padrões (tabelas dinâmicas e gráficos).
 
-**Nosso objetivo aqui:** trazer a base da PRF para o Excel, validar se ela veio íntegra, e dar os primeiros passos para responder as perguntas orientadoras e confrontar as hipóteses levantadas no Módulo 1 — antes de partir para SQL e Python.
+**Nosso objetivo aqui:** trazer a base da PRF para o Excel, validar se ela veio íntegra, e dar os primeiros passos para responder as perguntas orientadoras e confrontar as hipóteses levantadas na Unidade 1 — antes de partir para SQL e Python.
 
 ## Conteúdo da planilha
 
