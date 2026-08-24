@@ -1,4 +1,4 @@
-# 🐍 Módulo 4 — Preparação de Dados em Python
+# 🐍 Unidade 4 — Preparação de Dados em Python
 
 **Trilha:** Análise de Dados — Data Analytics com Dados Abertos da PRF
 **Base:** Acidentes 2025 agrupados por ocorrência (CSV bruto da PRF, `dados_brutos/acidentes2025.csv`)
@@ -7,7 +7,7 @@
 
 ## O que essa etapa pediu
 
-Depois das consultas em SQL (Módulo 3), o Módulo 4 leva o tratamento para o Python: ler a base bruta, diagnosticar e corrigir problemas de qualidade, criar as variáveis derivadas e a variável-alvo, e gerar as duas bases finais do projeto — uma para análise/dashboard e outra pronta para modelagem, sem vazamento de dado.
+Depois das consultas em SQL (Unidade 3), a Unidade 4 leva o tratamento para o Python: ler a base bruta, diagnosticar e corrigir problemas de qualidade, criar as variáveis derivadas e a variável-alvo, e gerar as duas bases finais do projeto — uma para análise/dashboard e outra pronta para modelagem, sem vazamento de dado.
 
 ## Objetivo
 
@@ -15,7 +15,7 @@ Preparar os dados de acidentes da PRF 2025 para análise exploratória, Power BI
 
 ## Variável-alvo
 
-`acidente_fatal = 1` quando `mortos >= 1`; caso contrário, `acidente_fatal = 0`. Mesma definição usada nos Módulos 1 e 3.
+`acidente_fatal = 1` quando `mortos >= 1`; caso contrário, `acidente_fatal = 0`. Mesma definição usada nas Unidades 1 e 3.
 
 ## Bases geradas
 
