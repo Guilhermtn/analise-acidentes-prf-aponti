@@ -40,10 +40,10 @@ Identificar padrões e indicadores associados à gravidade dos acidentes, cruzan
 
 ```
 analise-acidentes-prf-aponti/
-├── doc_modulo01/
-├── excel_modulo02/
-├── python_modulo04/
-├── sql_modulo03/
+├── unidade_01/
+├── unidade_02/
+├── unidade_03/
+├── unidade_04/
 └── README.md
 ```
 
@@ -51,19 +51,19 @@ analise-acidentes-prf-aponti/
 
 ## O que foi feito em cada módulo
 
-### 📄 doc_modulo01 — Compreensão do negócio
+### 📄 unidade_01 — Compreensão do negócio
 
 Documento de Business Understanding (CRISP-DM): contexto e problema, objetivo analítico, público-alvo, classificação das variáveis da base, indicadores gerais, 7 perguntas orientadoras, hipóteses iniciais a confirmar na etapa de avaliação, e as limitações do projeto — como a ausência de dado de volume de tráfego e o fato de a causa do acidente ser um julgamento do agente, não uma medição objetiva.
 
-### 📊 excel_modulo02 — Exploração inicial em Excel
+### 📊 unidade_02 — Exploração inicial em Excel
 
 Primeira leitura da base, em 5 abas: dados brutos importados, dicionário resumido dos campos, 8 tabelas dinâmicas (acidentes por UF, fatais por mês, causas frequentes, mortos por BR, tipo de acidente, condição meteorológica, classificação do acidente e município), 4 gráficos exploratórios com observações de leitura, e uma aba com as principais observações registradas nessa fase. Planilha construída no Google Sheets e exportada para `.xlsx`.
 
-### 🧾 sql_modulo03 — Consultas SQL
+### 🧾 unidade_03 — Consultas SQL
 
 Script comentado no SQLite (via SQLiteOnline) sobre a tabela `dados_prf`: criação da view `vw_acidentes_base` com a flag `acidente_fatal`, indicadores gerais e por UF/BR, evolução mensal, análises bivariadas (tipo de acidente, causa, fase do dia, condição meteorológica, tipo de pista) sempre com corte mínimo de registros por categoria, cruzamento de tipo de pista com fase do dia, cálculo do Lift de letalidade por tipo de acidente, e duas views (`vw_indicadores_mensais` e `vw_indicadores_uf_br`) prontas para alimentar o dashboard.
 
-### 🐍 python_modulo04 — Preparação de dados em Python
+### 🐍 unidade_04 — Preparação de dados em Python
 
 Notebook que parte da base bruta e: lê o CSV testando encoding, padroniza colunas, diagnostica qualidade (tipos, nulos, duplicidade, cardinalidade), cria as variáveis derivadas (tempo, turno, faixa horária, BR formatada, chave de localidade), constrói e valida a variável-alvo `acidente_fatal`, e gera as duas bases finais:
 
