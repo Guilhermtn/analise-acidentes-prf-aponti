@@ -1,4 +1,4 @@
-# 🧾 Módulo 3 — Consultas SQL (SQLite)
+# 🧾 Unidade 3 — Consultas SQL (SQLite)
 
 **Trilha:** Análise de Dados — Data Analytics com Dados Abertos da PRF
 **Base:** Acidentes 2025 agrupados por ocorrência (tabela `dados_prf`, importada do CSV bruto da PRF)
@@ -7,7 +7,7 @@
 
 ## O que essa etapa pediu
 
-Depois da exploração inicial no Excel (Módulo 2), o Módulo 3 leva a mesma investigação para o SQL, agora consultando a base já importada no SQLite (via SQLiteOnline). O objetivo é validar com consultas os padrões que apareceram nas tabelas dinâmicas do Excel, e já deixar views prontas para alimentar o dashboard no Power BI.
+Depois da exploração inicial no Excel (Unidade 2), a Unidade 3 leva a mesma investigação para o SQL, agora consultando a base já importada no SQLite (via SQLiteOnline). O objetivo é validar com consultas os padrões que apareceram nas tabelas dinâmicas do Excel, e já deixar views prontas para alimentar o dashboard no Power BI.
 
 ## O que foi feito
 
