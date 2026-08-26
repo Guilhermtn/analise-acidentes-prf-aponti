@@ -153,6 +153,11 @@ Abaixo está o registro da evolução mensal de acidentes e ocorrências fatais 
 | 2025-11 | 6.209 | 444 | 498 | 7.103 | 7% |
 | 2025-12 | 6.788 | 480 | 572 | 8.100 | 7% |
 
+![Gráfico de Acidentes e Fatais por Mês](grafico_acidentes_temporal.png)
+
+**Análise Visual:** A representação gráfica evidencia o distanciamento absoluto entre o volume total de ocorrências (linha superior escura) e a quantidade de acidentes com desfecho fatal (linha inferior vermelha). Fica claro que a curva de fatalidades possui uma variância muito menor e mais "achatada" do que a curva de acidentes totais. 
+
+Mesmo quando os acidentes totais sofrem uma queda visível em fevereiro ou assumem uma forte tendência de alta a partir de setembro (culminando no pico de dezembro), a linha de fatalidades se mantém em um patamar quase constante. Os leves "degraus" de elevação nas ocorrências fatais observados visualmente em maio e dezembro reforçam que a severidade possui uma dinâmica própria, não sendo um mero reflexo espelhado do aumento ou diminuição do volume de tráfego geral.
 
 **Análise:** A evolução temporal apresenta picos de volume absoluto em meses tradicionalmente associados a férias escolares, turismo e festividades: julho (6.238), outubro (6.252) e dezembro, que lidera o ranking de volume com 6.788 ocorrências e 572 óbitos.
 
