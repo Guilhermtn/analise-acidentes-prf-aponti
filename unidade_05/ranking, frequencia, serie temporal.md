@@ -1,6 +1,32 @@
 # Análise Exploratória de Dados - Acidentes PRF (2025)
 **Autor:** José Guilherme Teixeira Nunes e Francisco Almeida Lucas De Farias Junior 
 
+Este notebook contém uma Análise Exploratória de Dados (EDA) da base de acidentes da Polícia Rodoviária Federal (PRF) para o ano de 2025, focada em identificar fatores associados a acidentes com vítimas fatais.
+
+## Problema Analítico Central
+
+Quais fatores estão associados à ocorrência de acidentes com vítima fatal?
+
+**Variável-alvo:** `acidente_fatal` (1 = pelo menos 1 morto, 0 = sem vítima fatal).
+
+## Indicadores Globais
+
+| Indicador                      | Valor     |
+|:-------------------------------|:----------|
+| Total de acidentes             | 72529     |
+| Acidentes com vítima fatal     | 5210      |
+| % de acidentes fatais          | 7.18%     |
+| Total de mortos                | 6043      |
+| Mortos por 100 acidentes       | 8.33      |
+| Total de feridos               | 83550     |
+| Total de feridos graves        | 20018     |
+| Total de ilesos                | 76406     |
+| Total de veículos envolvidos   | 144922    |
+| Total de pessoas envolvidas    | 188346    |
+| Média de pessoas por acidente  | 2.60      |
+| Média de veículos por acidente | 2.00      |
+
+
 ## 1. Dados de Referência: Estimativa Populacional por UF (2025)
 A tabela abaixo consolida as estimativas populacionais do IBGE para o ano de 2025. Estes dados servirão unicamente como base comparativa para a análise extra no final deste documento.
 
@@ -37,7 +63,53 @@ A tabela abaixo consolida as estimativas populacionais do IBGE para o ano de 202
 
 ## 2. Frequências e Rankings (Volume vs. Proporção)
 
-### 2.1. Ranking por UF (Volume de Acidentes e Gravidade)
+### 1. Análise de Frequência Combinada: UF por Tipo de Acidente
+
+Esta análise detalha a distribuição dos tipos de acidentes dentro de cada Unidade da Federação (UF), destacando os volumes de acidentes, o total de mortos e a letalidade percentual para cada combinação.
+
+```python
+# Código para gerar a tabela UF x Tipo
+uf_tipo_acidente_analise = df.groupby(['uf', 'tipo_acidente'], observed=True).agg(
+    acidentes=('id', 'count'), fatais=('acidente_fatal', 'sum'), mortos=('mortos', 'sum')
+)
+uf_tipo_acidente_analise['pct_fatal'] = uf_tipo_acidente_analise['fatais'] / uf_tipo_acidente_analise['acidentes']
+uf_tipo_acidente_analise = uf_tipo_acidente_analise[uf_tipo_acidente_analise['acidentes'] >= 50].sort_values(['uf', 'pct_fatal'], ascending=[True, False])
+display(uf_tipo_acidente_analise.groupby('uf').head(5))
+```
+
+**Análise:**
+* A letalidade varia drasticamente entre estados para o mesmo tipo de acidente.
+* Tipos como **Capotamento** e **Colisão com objeto estático** frequentemente lideram a letalidade em diversas UFs, sugerindo que a infraestrutura local ou o tempo de resposta médica podem influenciar a sobrevivência nesses eventos.
+
+### 2. Análise de Frequência: Tipo de Acidente
+
+Foco nos tipos de acidentes mais comuns e na letalidade associada a cada um.
+
+```python
+print("Ranking por tipo de acidente (mínimo 100 acidentes):")
+display(analise_bivariada('tipo_acidente', min_acidentes=100))
+```
+
+**Análise:**
+* **Colisão frontal** e **Atropelamento de Pedestre** (quando presentes no topo) apresentam as maiores taxas de letalidade, muito acima da média global de 7.2%.
+* Acidentes de alto volume como **Colisão traseira** possuem baixa letalidade, indicando que geram muitos registros mas poucas mortes em comparação a impactos frontais.
+
+### 3. Análise de Frequência: Causa do Acidente
+
+Investiga as causas raiz com maior impacto fatal.
+
+```python
+print("Ranking por causa do acidente (mínimo 100 acidentes):")
+display(analise_bivariada('causa_acidente', min_acidentes=100))
+```
+
+**Análise:**
+* Causas comportamentais como **Ingestão de álcool**, **Velocidade Incompatível** e **Dormir ao volante** são os principais preditores de acidentes fatais.
+* Embora a **Falta de atenção** seja a causa mais frequente em volume, sua letalidade é menor que a de manobras de risco deliberadas (como ultrapassagens indevidas), que resultam em colisões mais violentas.
+
+
+
+### 3.1. Ranking por UF (Volume de Acidentes e Gravidade)
 Abaixo, a distribuição dos acidentes registrados pela PRF agrupados por Unidade da Federação, ordenados pelo volume total de ocorrências.
 
 | UF | Acidentes Totais | Mortos | % de Fatalidade PRF |
@@ -77,7 +149,7 @@ Por outro lado, ao investigar a gravidade relativa, o cenário muda drasticament
 
  **Cautela Metodológica:** A alta fatalidade em locais como MA, PA e RR não deve ser interpretada somente como causalidade direta relacionada à localização. Essa proporção pode esconder dinâmicas de diferentes BRs, trechos específicos e etc.
 
-### 2.2. Ranking por Rodovia (BR) - Top 15 em Volume
+### 3.2. Ranking por Rodovia (BR) - Top 15 em Volume
 A tabela a seguir apresenta as 15 rodovias federais (BRs) com o maior número de acidentes registrados.
 
 | BR | Acidentes | Mortos | Feridos | % Acidentes (Total) | % Fatalidade |
@@ -105,7 +177,7 @@ Entretanto, observando a severidade, a BR-316 desponta como um ponto de alerta o
 
 **Cautela Metodológica:** A extensão territorial grandes de algumas rodovias contribui naturalmente para sua liderança em volume absoluto.
 
-### 2.3. Ranking por Tipo de Acidente
+### 3.3. Ranking por Tipo de Acidente
 O agrupamento por dinâmica (tipo) do acidente permite identificar as características mais comuns e aquelas mais perigosas nas rodovias.
 
 | Tipo de Acidente | Acidentes | Mortos | Feridos | % Acidentes (Total) | % Fatalidade |
@@ -135,7 +207,7 @@ A priorização muda completamente ao avaliarmos a letalidade: atropelamentos de
 
 **Cautela Metodológica:** A disparidade nos mostra que não se pode utilizar a métrica de "volume" para sinalizar "risco" de forma generalizada. Um trecho com alto volume de engavetamentos e colisões laterais trará grandes impactos no fluxo de trânsito, mas um trecho com recorrência de colisões frontais ceifará muito mais vidas.
 
-## 3. Série Temporal Simples (Acidentes e Fatalidades - 2025)
+## 4. Série Temporal Simples (Acidentes e Fatalidades - 2025)
 Abaixo está o registro da evolução mensal de acidentes e ocorrências fatais ao longo do ano.
 
 | Mês | Acidentes | Acidentes Fatais | Mortos | Feridos | % Fatalidade |
